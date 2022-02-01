@@ -271,9 +271,6 @@ input[type="range"].range_volume::-webkit-slider-thumb {
 
 }
 @media (max-width: 425px) {
-    .video-player{
-        width: 95vw;
-    }
     .header__title{
         font-size: 3rem;
     }
