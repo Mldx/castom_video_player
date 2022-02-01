@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video player</title>
+    <link rel="shortcut icon" href="images/favicon/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <div class="wrapper wrapper_header">
+        <h1 class="header__title">
+            Custom video player
+        </h1>
+    </div>
+</header>
+<main class="main">
+    <div class="wrapper wrapper_main">
+        <div class="video-player">
+                <video class="video-player__viewer" src="video/video.mp4"></video>
+                <button class="video-player__play"></button>
+                <div class="video-player__controls">
+                    <div class="controls__play"></div>
+                    <input class="range_progress" value="0" type="range">
+                    <div class="controls__volume"></div>
+                    <input class="range_volume" type="range">
+                </div>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
