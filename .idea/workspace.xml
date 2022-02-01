@@ -2,11 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e997301-b5c6-4b1f-9098-7a334b848983" name="Changes" comment="git init">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/castom_video_player.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/castom-video-player/images/svg/play-btn-hov.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/camera.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/fb.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/image.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/inst.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/mic.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/mute.svg" beforeDir="false" afterPath="$PROJECT_DIR$/castom-video-player/images/svg/mute.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/pause.svg" beforeDir="false" afterPath="$PROJECT_DIR$/castom-video-player/images/svg/pause.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/pinterest.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/play.svg" beforeDir="false" afterPath="$PROJECT_DIR$/castom-video-player/images/svg/play.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/switch-theme.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/tw.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/video.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/images/svg/volume.svg" beforeDir="false" afterPath="$PROJECT_DIR$/castom-video-player/images/svg/volume.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/castom-video-player/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/castom-video-player/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/castom-video-player/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/castom-video-player/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +55,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/castom-video-player/images/footer" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Администратор\Desktop\castom_video_player\castom-video-player\images\footer" />
+      <recent name="C:\Users\Администратор\Desktop\castom_video_player\castom-video-player\images\svg" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -52,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1643721546336</updated>
-      <workItem from="1643721547604" duration="17069000" />
+      <workItem from="1643721547604" duration="36532000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1643721620601</created>
@@ -61,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643721620601</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="git init">
+      <created>1643739518644</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1643739518644</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
