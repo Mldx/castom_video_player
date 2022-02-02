@@ -9,10 +9,10 @@ const controlsPanel = document.querySelector('.video-player__controls')
 const timeDuration = document.querySelector('.time__duration')
 const timeCurrent = document.querySelector('.time__current')
 const poster = document.querySelector('.poster')
+let tempVolume = 10;
+
 
 const playPause = () => {
-
-    timeDuration.innerText = `${String(Math.trunc(video.duration/60)).padStart(2,'0')}:${String((video.duration%60).toFixed(0)).padStart(2,'0')}`
     if (!playButtons[1].classList.contains('controls__pause')) {
         video.play();
         playButtons[0].style.display = 'none';
@@ -39,42 +39,43 @@ const vPause = () => {
     }
 }
 
-playButtons.forEach((el) => el.addEventListener('click', ()=>{
+playButtons.forEach((el) => el.addEventListener('click', () => {
     playPause();
     poster.style.opacity = '0';
-    setTimeout(()=>poster.style.display = 'none',500)
+    setTimeout(() => poster.style.display = 'none', 500)
+    timeDuration.innerText = `${String(Math.trunc(video.duration / 60)).padStart(2, '0')}:${String((video.duration % 60).toFixed(0)).padStart(2, '0')}`
 
 }))
-playerViewer.addEventListener('click', ()=>playPause())
+playerViewer.addEventListener('click', () => playPause())
 
-playerViewer.addEventListener('mouseenter',()=>{
+playerViewer.addEventListener('mouseenter', () => {
     controlsPanel.style.bottom = '0'
 })
-playerViewer.addEventListener('mouseleave',()=>{
+playerViewer.addEventListener('mouseleave', () => {
     if (playButtons[1].classList.contains('controls__pause')) {
-    controlsPanel.style.bottom = '-60px'
-        }
+        controlsPanel.style.bottom = '-60px'
+    }
 })
-controlsPanel.addEventListener('mouseenter',()=>{
+controlsPanel.addEventListener('mouseenter', () => {
     controlsPanel.style.bottom = '0'
 })
-controlsPanel.addEventListener('mouseleave',()=>{
+controlsPanel.addEventListener('mouseleave', () => {
     if (playButtons[1].classList.contains('controls__pause')) {
         controlsPanel.style.bottom = '-60px'
     }
 })
 
 rangeProgress.addEventListener('input', () => {
-    timeCurrent.innerText = `${String(Math.trunc(video.currentTime/60)).padStart(2,'0')}:${String((video.currentTime%60).toFixed(0)).padStart(2,'0')}`
+    timeCurrent.innerText = `${String(Math.trunc(video.currentTime / 60)).padStart(2, '0')}:${String((video.currentTime % 60).toFixed(0)).padStart(2, '0')}`
     let temp = video.duration / 100;
     video.currentTime = rangeProgress.value * temp;
     vPause()
     playButtons[0].style.display = 'none';
 
-    rangeProgress.style = `background:linear-gradient(to right,`+
-        `#CC6666 0%,`+
-        `#CC6666 ${rangeProgress.value}%,`+
-        `rgb(200, 200, 200) ${rangeProgress.value}%,`+
+    rangeProgress.style = `background:linear-gradient(to right,` +
+        `#CC6666 0%,` +
+        `#CC6666 ${rangeProgress.value}%,` +
+        `rgb(200, 200, 200) ${rangeProgress.value}%,` +
         `rgb(200, 200, 200) 100%);`
 })
 
@@ -85,29 +86,59 @@ rangeProgress.addEventListener('mouseup', () => {
 })
 
 video.addEventListener('timeupdate', () => {
-    timeCurrent.innerText = `${String(Math.trunc(video.currentTime/60)).padStart(2,'0')}:${String((video.currentTime%60).toFixed(0)).padStart(2,'0')}`
-    let temp = video.currentTime/(video.duration / 100);
-    rangeProgress.value =temp.toFixed(1);
+    timeCurrent.innerText = `${String(Math.trunc(video.currentTime / 60)).padStart(2, '0')}:${String((video.currentTime % 60).toFixed(0)).padStart(2, '0')}`
+    let temp = video.currentTime / (video.duration / 100);
+    rangeProgress.value = temp.toFixed(1);
 
-    rangeProgress.style = `background:linear-gradient(to right,`+
-    `#CC6666 0%,`+
-     `#CC6666 ${rangeProgress.value}%,`+
-      `rgb(200, 200, 200) ${rangeProgress.value}%,`+
-       `rgb(200, 200, 200) 100%);`
-
-})
-video.volume = rangeVolume.value/100;
-rangeVolume.addEventListener('input', () => {
-    video.volume = rangeVolume.value/100;
-    rangeVolume.style = `background:linear-gradient(to right,`+
-        `#CC6666 0%,`+
-        `#CC6666 ${rangeVolume.value}%,`+
-        `rgb(200, 200, 200) ${rangeVolume.value}%,`+
+    rangeProgress.style = `background:linear-gradient(to right,` +
+        `#CC6666 0%,` +
+        `#CC6666 ${rangeProgress.value}%,` +
+        `rgb(200, 200, 200) ${rangeProgress.value}%,` +
         `rgb(200, 200, 200) 100%);`
-    rangeVolume.value==='0'?controlsVolume.classList.add('muted'):controlsVolume.classList.remove('muted');
+
+})
+video.volume = rangeVolume.value / 100;
+rangeVolume.addEventListener('input', () => {
+    video.muted = false
+    video.volume = rangeVolume.value / 100;
+    rangeVolume.style = `background:linear-gradient(to right,` +
+        `#CC6666 0%,` +
+        `#CC6666 ${rangeVolume.value}%,` +
+        `rgb(200, 200, 200) ${rangeVolume.value}%,` +
+        `rgb(200, 200, 200) 100%);`
+    rangeVolume.value === '0' ? controlsVolume.classList.add('muted') : controlsVolume.classList.remove('muted');
 })
 
-controlsVolume.addEventListener('click',()=>{
-    video.muted?video.muted=false:video.muted=true
+rangeVolume.addEventListener('mousedown',()=>{
+    tempVolume = rangeVolume.value;
+})
+
+rangeVolume.addEventListener('change',()=>{
+    if (rangeVolume.value==='0'){
+        video.muted=true
+    }
+})
+
+controlsVolume.addEventListener('click', () => {
+
+    video.muted ? video.muted = false : video.muted = true
     controlsVolume.classList.toggle('muted')
+
+    if (video.muted) {
+        tempVolume = rangeVolume.value
+        rangeVolume.style = `background:linear-gradient(to right,` +
+            `#CC6666 0%,` +
+            `#CC6666 0%,` +
+            `rgb(200, 200, 200) 0%,` +
+            `rgb(200, 200, 200) 100%);`
+        rangeVolume.value = '0';
+    } else if (!video.muted) {
+        rangeVolume.value = tempVolume;
+        video.volume = rangeVolume.value/100
+        rangeVolume.style = `background:linear-gradient(to right,` +
+            `#CC6666 0%,` +
+            `#CC6666 ${rangeVolume.value}%,` +
+            `rgb(200, 200, 200) ${rangeVolume.value}%,` +
+            `rgb(200, 200, 200) 100%);`
+    }
 })
