@@ -65,6 +65,7 @@ controlsPanel.addEventListener('mouseleave',()=>{
 })
 
 rangeProgress.addEventListener('input', () => {
+    timeCurrent.innerText = `${String(Math.trunc(video.currentTime/60)).padStart(2,'0')}:${String((video.currentTime%60).toFixed(0)).padStart(2,'0')}`
     let temp = video.duration / 100;
     video.currentTime = rangeProgress.value * temp;
     vPause()
@@ -87,7 +88,6 @@ video.addEventListener('timeupdate', () => {
     timeCurrent.innerText = `${String(Math.trunc(video.currentTime/60)).padStart(2,'0')}:${String((video.currentTime%60).toFixed(0)).padStart(2,'0')}`
     let temp = video.currentTime/(video.duration / 100);
     rangeProgress.value =temp.toFixed(1);
-    console.log(rangeProgress.value)
 
     rangeProgress.style = `background:linear-gradient(to right,`+
     `#CC6666 0%,`+

@@ -67,6 +67,7 @@ a:hover{
 .video-player__viewer {
     width: 100%;
     height: auto;
+
 }
 
 .video-player__controls {
@@ -160,6 +161,7 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"].range_progress::-webkit-slider-thumb {
     width: 12px;
     height: 12px;
+
 }
 
 input[type="range"].range_volume::-webkit-slider-thumb {
