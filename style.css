@@ -243,7 +243,11 @@ input[type="range"].range_volume::-webkit-slider-thumb {
     filter: brightness(0) saturate(100%) invert(42%) sepia(90%) saturate(356%) hue-rotate(315deg) brightness(102%) contrast(74%);
 }
 
-
+@media (max-width: 1440px){
+    .wrapper_footer{
+        padding: 20px 10px;
+    }
+}
 @media (max-width: 768px) {
     .header__title{
         font-size: 3rem;
