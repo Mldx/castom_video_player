@@ -1,4 +1,5 @@
 const video = document.querySelector('.video-player__viewer');
+const videoPlayer = document.querySelector('.video-player');
 const playButtons = [document.querySelector('.video-player__play'),
     document.querySelector('.controls__play')]
 const playerViewer = document.querySelector('.video-player__viewer')
@@ -8,6 +9,7 @@ const controlsVolume = document.querySelector('.controls__volume')
 const controlsPanel = document.querySelector('.video-player__controls')
 const timeDuration = document.querySelector('.time__duration')
 const timeCurrent = document.querySelector('.time__current')
+const timeSlash = document.querySelector('.time__slash')
 const poster = document.querySelector('.poster')
 let tempVolume = 10;
 
@@ -46,7 +48,12 @@ playButtons.forEach((el) => el.addEventListener('click', () => {
     timeDuration.innerText = `${String(Math.trunc(video.duration / 60)).padStart(2, '0')}:${String((video.duration % 60).toFixed(0)).padStart(2, '0')}`
 
 }))
-playerViewer.addEventListener('click', () => playPause())
+playerViewer.addEventListener('click', () => {
+    playPause()
+})
+playerViewer.addEventListener('mousemove',()=>{
+    controlsPanel.style.bottom = '0'
+})
 
 playerViewer.addEventListener('mouseenter', () => {
     controlsPanel.style.bottom = '0'
@@ -95,6 +102,10 @@ video.addEventListener('timeupdate', () => {
         `#CC6666 ${rangeProgress.value}%,` +
         `rgb(200, 200, 200) ${rangeProgress.value}%,` +
         `rgb(200, 200, 200) 100%);`
+    if (rangeProgress.value === '100') {
+        vPause()
+        controlsPanel.style.bottom = '0'
+    }
 
 })
 video.volume = rangeVolume.value / 100;
@@ -109,13 +120,13 @@ rangeVolume.addEventListener('input', () => {
     rangeVolume.value === '0' ? controlsVolume.classList.add('muted') : controlsVolume.classList.remove('muted');
 })
 
-rangeVolume.addEventListener('mousedown',()=>{
+rangeVolume.addEventListener('mousedown', () => {
     tempVolume = rangeVolume.value;
 })
 
-rangeVolume.addEventListener('change',()=>{
-    if (rangeVolume.value==='0'){
-        video.muted=true
+rangeVolume.addEventListener('change', () => {
+    if (rangeVolume.value === '0') {
+        video.muted = true
     }
 })
 
@@ -133,17 +144,112 @@ controlsVolume.addEventListener('click', () => {
             `rgb(200, 200, 200) 100%);`
         rangeVolume.value = '0';
     } else if (!video.muted) {
-        rangeVolume.value = tempVolume;
-        video.volume = rangeVolume.value/100
+        if (tempVolume === '0') {
+            rangeVolume.value = '10';
+            video.volume = rangeVolume.value / 100
+            rangeVolume.style = `background:linear-gradient(to right,` +
+                `#CC6666 0%,` +
+                `#CC6666 ${rangeVolume.value}%,` +
+                `rgb(200, 200, 200) ${rangeVolume.value}%,` +
+                `rgb(200, 200, 200) 100%);`
+        } else {
+            rangeVolume.value = tempVolume;
+            video.volume = rangeVolume.value / 100
+            rangeVolume.style = `background:linear-gradient(to right,` +
+                `#CC6666 0%,` +
+                `#CC6666 ${rangeVolume.value}%,` +
+                `rgb(200, 200, 200) ${rangeVolume.value}%,` +
+                `rgb(200, 200, 200) 100%);`
+        }
+    }
+})
+
+document.addEventListener('keydown', (event) => {
+    let keyCode = event.keyCode;
+    console.log(keyCode)
+    if (keyCode === 32) {
+        playPause()
+
+        if (poster.style.display !== 'none') {
+            poster.style.opacity = '0';
+            setTimeout(() => poster.style.display = 'none', 500)
+            timeDuration.innerText = `${String(Math.trunc(video.duration / 60)).padStart(2, '0')}:${String((video.duration % 60).toFixed(0)).padStart(2, '0')}`
+        }
+        if (playButtons[1].classList.contains('controls__pause')) {
+            controlsPanel.style.bottom = '-60px'
+        } else {
+            controlsPanel.style.bottom = '0'
+        }
+
+    }
+    if (keyCode === 39) {
+        video.currentTime += 5;
+    }
+    if (keyCode === 37) {
+        video.currentTime -= 5;
+    }
+})
+const playerIsActive = (event) => {
+    console.log(event)
+    let temp = false;
+    const x = [video,
+        videoPlayer,
+        ...playButtons,
+        playerViewer,
+        rangeProgress,
+        rangeVolume,
+        controlsVolume,
+        controlsPanel,
+        timeDuration,
+        timeCurrent,
+        timeSlash,
+        poster]
+    x.forEach((el) => {
+        if (el === event.target) {
+            temp = true
+        }
+    })
+    console.log(temp)
+    return temp;
+
+}
+
+const volumeUpDown = (e) => {
+    let keyCode = e.keyCode;
+    if (keyCode === 38) {
+        e.preventDefault();
+        rangeVolume.value = String(Number(rangeVolume.value) + 10)
+        console.log(rangeVolume.value)
+        video.volume = rangeVolume.value / 100
         rangeVolume.style = `background:linear-gradient(to right,` +
             `#CC6666 0%,` +
             `#CC6666 ${rangeVolume.value}%,` +
             `rgb(200, 200, 200) ${rangeVolume.value}%,` +
             `rgb(200, 200, 200) 100%);`
     }
+    if (keyCode === 40) {
+        e.preventDefault();
+        rangeVolume.value = String(Number(rangeVolume.value) - 10)
+        console.log(rangeVolume.value)
+        video.volume = rangeVolume.value / 100
+        rangeVolume.style = `background:linear-gradient(to right,` +
+            `#CC6666 0%,` +
+            `#CC6666 ${rangeVolume.value}%,` +
+            `rgb(200, 200, 200) ${rangeVolume.value}%,` +
+            `rgb(200, 200, 200) 100%);`
+    }
+}
+
+document.addEventListener('click', (event) => {
+    if (playerIsActive(event)) {
+        document.addEventListener('keydown', volumeUpDown)
+    } else {
+        document.removeEventListener('keydown', volumeUpDown)
+    }
 })
 
 
+//---------------Log-----------------
 const check = String.fromCodePoint(0x2714)
 const font = 'color: #CC6666; font-family:Comic Sans MS; font-size: 18px; font-weight: 400;'
 
@@ -156,5 +262,4 @@ console.log(`1. Вёрстка +10 ${check}
 5. При клике по кнопке Volume/Mute можно включить или отключить звук. Одновременно с включением/выключением звука меняется внешний вид кнопки. Также внешний вид кнопки меняется, если звук включают или выключают перетягиванием регулятора громкости звука от нуля или до нуля +10 ${check}
 6. Кнопка Play/Pause в центре видео +10 ${check}
 7. Очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10 ${check}`);
-
 

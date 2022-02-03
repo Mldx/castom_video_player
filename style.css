@@ -10,13 +10,15 @@ html {
     font-size: 10px;
     background: #f5f5f5;
 }
-a,a:active{
+
+a, a:active {
+    transition: color .5s;
     text-decoration: none;
     color: black;
-    transition: color .5s;
 }
-a:hover{
-    color:#CC6666;
+
+a:hover {
+    color: #CC6666;
 }
 
 
@@ -37,17 +39,20 @@ a:hover{
     font-weight: 300;
     cursor: default;
 }
-.site{
+
+.site {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
-.main{
-    flex-grow: 1;
+
+.main {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     justify-content: center;
 }
+
 .wrapper_main {
     display: flex;
     overflow: hidden;
@@ -83,6 +88,7 @@ a:hover{
 
 .video-player__play {
     position: absolute;
+    z-index: 2;
     display: flex;
     width: 150px;
     height: 150px;
@@ -91,7 +97,6 @@ a:hover{
     border: none;
     background: url("images/svg/play-btn.svg") no-repeat;
     background-size: cover;
-    z-index: 2;
 }
 
 .video-player__play:hover {
@@ -118,6 +123,7 @@ a:hover{
     min-height: 30px;
     cursor: pointer;
     background: url("images/svg/play.svg") no-repeat center;
+
 }
 
 .controls__pause {
@@ -207,58 +213,65 @@ input[type="range"].range_volume::-webkit-slider-thumb {
     font-family: Roboto, serif;
     font-size: 1.5rem;
     padding-left: 10px;
-    color: white;
     cursor: default;
+    color: white;
 }
-.poster{
+
+.poster {
     position: absolute;
+    z-index: 1;
     width: 100%;
     height: 100%;
+    transition: opacity .5s;
     background: url("images/video/video-player.jpg") center no-repeat;
     background-size: cover;
-    z-index: 1;
-    transition: opacity .5s;
 }
 
-.wrapper_footer{
-    padding: 20px 0;
+.wrapper_footer {
+    font-family: Roboto, serif;
+    font-size: 2.5rem;
+    font-weight: 400;
     display: flex;
     justify-content: space-between;
-    font-size: 2.5rem;
-    font-family: Roboto, serif;
-    font-weight: 400;
-}
-.year{
-    cursor: default;
-}
-.logoRS__link{
-    background: url("images/footer/rs_school_js.svg") no-repeat center;
-    background-size: contain;
-    width: 80px;
-    height: 30px;
-    display: block;
+    padding: 20px 0;
 }
 
-.logoRS__link:hover{
+.year {
+    cursor: default;
+}
+
+.logoRS__link {
+    display: block;
+    width: 80px;
+    height: 30px;
+    background: url("images/footer/rs_school_js.svg") no-repeat center;
+    background-size: contain;
+}
+
+.logoRS__link:hover {
     filter: brightness(0) saturate(100%) invert(42%) sepia(90%) saturate(356%) hue-rotate(315deg) brightness(102%) contrast(74%);
 }
 
-@media (max-width: 1440px){
-    .wrapper_footer{
+@media (max-width: 1440px) {
+    .wrapper_footer {
         padding: 20px 10px;
     }
 }
+
 @media (max-width: 768px) {
-    .header__title{
+    .header__title {
         font-size: 3rem;
     }
-    .video-player__play{
-        height: 80px;
+
+    .video-player__play {
         width: 80px;
+        height: 80px;
     }
-    .video-player__controls{
+
+    .video-player__controls {
         min-height: 25px;
     }
+
     .controls__play {
         width: 15px;
         min-width: 15px;
@@ -266,28 +279,33 @@ input[type="range"].range_volume::-webkit-slider-thumb {
         min-height: 20px;
         background-size: contain;
     }
-    .controls__volume{
+
+    .controls__volume {
         width: 15px;
         min-width: 15px;
         height: 20px;
         min-height: 20px;
-        background-size: contain;
         margin-left: 10px;
+        background-size: contain;
     }
 
 }
+
 @media (max-width: 425px) {
-    .header__title{
+    .header__title {
         font-size: 3rem;
     }
-    .video-player__play{
-        height: 50px;
+
+    .video-player__play {
         width: 50px;
+        height: 50px;
     }
-    .video-player__controls{
+
+    .video-player__controls {
         min-height: 25px;
         padding: 0 10px;
     }
+
     .controls__play {
         width: 15px;
         min-width: 15px;
@@ -295,15 +313,17 @@ input[type="range"].range_volume::-webkit-slider-thumb {
         min-height: 20px;
         background-size: contain;
     }
-    .controls__volume{
+
+    .controls__volume {
         width: 15px;
         min-width: 15px;
         height: 20px;
         min-height: 20px;
-        background-size: contain;
         margin-left: 10px;
+        background-size: contain;
     }
-    .time{
+
+    .time {
         font-size: 1rem;
     }
 }
